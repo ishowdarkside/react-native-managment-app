@@ -1,13 +1,17 @@
 import React from "react";
-import { Stack } from "expo-router";
+import { Tabs } from "expo-router";
 import ProtectPrivateLayout from "@/components/ProtectPrivateLayout";
+import { useAuth } from "@/hooks/useAuth";
 
 const PrivateLayout = () => {
+  useAuth();
   return (
     <ProtectPrivateLayout>
-      <Stack>
-        <Stack.Screen name="index" />
-      </Stack>
+      <Tabs screenOptions={{ headerShown: false }}>
+        <Tabs.Screen name="index" />
+        <Tabs.Screen name="drivers" />
+        <Tabs.Screen name="settings" />
+      </Tabs>
     </ProtectPrivateLayout>
   );
 };

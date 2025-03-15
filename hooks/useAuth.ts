@@ -1,7 +1,6 @@
 import { queryKeys } from "@/keyFactory";
+import { AuthType } from "@/types/authTypes";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-
-const initialUserData = { token: undefined, user: undefined };
 
 export const useAuth = () => {
   const QueryClient = useQueryClient();
@@ -9,8 +8,8 @@ export const useAuth = () => {
   const { data: user, isLoading } = useQuery({
     queryKey: queryKeys.auth,
     gcTime: Infinity,
-    queryFn: () => Promise.resolve({ token: undefined, user: undefined }),
-    initialData: initialUserData,
+    staleTime: Infinity,
+    queryFn: () => Promise.resolve<AuthType>({ token: undefined, user: undefined }),
   });
 
   const setAuth = (data: any) => QueryClient.setQueryData(queryKeys.auth, data);
