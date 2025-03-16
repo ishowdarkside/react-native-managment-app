@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   return (
-    <View className="flex-1 gap-4 items-center justify-center px-10">
+    <View className="flex-1 gap-4 items-center justify-center px-10 ">
       <Text className="mb-10">LOGIN</Text>
       <TextInput
         onChangeText={(e) => setEmail(e)}

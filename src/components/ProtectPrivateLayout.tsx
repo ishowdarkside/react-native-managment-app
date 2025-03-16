@@ -9,7 +9,6 @@ const ProtectPrivateLayout = ({ children }: { children: ReactNode }) => {
   if (!session) return <ActivityIndicator size="large" color="#0000" />;
   if (!session?.user) return <Redirect href="/(public)" />;
 
-  console.log(session);
   return children;
 };
 
