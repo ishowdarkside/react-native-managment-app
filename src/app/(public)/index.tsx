@@ -23,12 +23,12 @@ const Login = () => {
       <TextInput
         onChangeText={(e) => setEmail(e)}
         placeholder="Email"
-        className="py-3 px-2 w-full text-black border-l-rose-500 bg-violet-400 rounded-sm"
+        className="py-3 px-2 w-full text-black  bg-violet-400 rounded-sm"
       />
       <TextInput
         onChangeText={(e) => setPassword(e)}
         placeholder="Password"
-        className="py-3 px-2 w-full text-black border-l-rose-500 bg-violet-400 rounded-sm"
+        className="py-3 px-2 w-full text-black bg-violet-400 rounded-sm"
       />
 
       <TouchableOpacity onPress={handleLogin} className="bg-violet-500 w-full p-3">

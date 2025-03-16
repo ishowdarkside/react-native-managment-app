@@ -1,15 +1,15 @@
-import { useAuth } from "@/hooks/useAuth";
-import { useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "@/src/hooks/useAuth";
 import { Redirect } from "expo-router";
 import { ReactNode } from "react";
 import { ActivityIndicator } from "react-native";
 
 const ProtectPrivateLayout = ({ children }: { children: ReactNode }) => {
-  const { user } = useAuth();
+  const { session } = useAuth();
 
-  if (!user) return <ActivityIndicator size="large" color="#0000" />;
-  if (!user?.user) return <Redirect href="/(public)" />;
+  if (!session) return <ActivityIndicator size="large" color="#0000" />;
+  if (!session?.user) return <Redirect href="/(public)" />;
 
+  console.log(session);
   return children;
 };
 

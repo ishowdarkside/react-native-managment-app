@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import ProtectPrivateLayout from "@/components/ProtectPrivateLayout";
-import { useAuth } from "@/hooks/useAuth";
+import ProtectPrivateLayout from "@/src/components/ProtectPrivateLayout";
+import { useAuth } from "@/src/hooks/useAuth";
 
 const PrivateLayout = () => {
   useAuth();
