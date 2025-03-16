@@ -15,7 +15,12 @@ export default function RootLayout() {
 
   return (
     <>
-      <ToastManager position="bottom" showProgressBar={false} style={{ width: "100%", marginLeft: 10, marginRight: 10 }} />
+      <ToastManager
+        showCloseIcon={false}
+        position="bottom"
+        showProgressBar={false}
+        style={{ width: "100%", marginLeft: 10, marginRight: 10, fontSize: 14, padding: 10 }}
+      />
       <QueryClientProvider client={queryClient}>
         <Stack initialRouteName="(private)" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(private)" />

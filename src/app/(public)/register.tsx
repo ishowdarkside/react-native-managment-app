@@ -2,15 +2,13 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import React from "react";
 import { SignUpType } from "@/src/types/authTypes";
-import { Link, useRouter } from "expo-router";
-import { useRegister } from "@/src/modules/Auth/hooks/useRegister";
-import { Toast } from "toastify-react-native";
-import { useAuth } from "@/src/hooks/useAuth";
+import { Link } from "expo-router";
+import { useAuthActions } from "@/src/modules/Auth/hooks/useAuthActions";
 
 const Register = () => {
   const { handleSubmit, control } = useForm<SignUpType>();
 
-  const { registerMutation, isPending } = useRegister();
+  const { registerMutation, isPending } = useAuthActions();
 
   const onSubmit: SubmitHandler<SignUpType> = async (data) => registerMutation(data);
 
@@ -79,10 +77,6 @@ const Register = () => {
         <Link href="/(public)" className="text-violet-500">
           Login Here
         </Link>
-
-        <TouchableOpacity onPress={() => Toast.success("SUCCESS")}>
-          <Text>CLICK ME</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

@@ -1,37 +1,44 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import { Link, useRouter } from "expo-router";
-import { useQueryClient } from "@tanstack/react-query";
-import { queryKeys } from "@/keyFactory";
+import { Link } from "expo-router";
+import { Controller, useForm } from "react-hook-form";
+import { SignInWithPasswordCredentials } from "@supabase/supabase-js";
+import { useAuthActions } from "@/src/modules/Auth/hooks/useAuthActions";
 
 const Login = () => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
+  const { control, handleSubmit } = useForm<SignInWithPasswordCredentials>();
+  const { loginMutation } = useAuthActions();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    const user = { user: { email, password }, jwt: Math.random() };
-    queryClient.setQueryData(queryKeys.auth, user);
-    router.navigate("/(private)");
-  };
+  const onSubmit = (data: SignInWithPasswordCredentials) => loginMutation(data);
 
   return (
     <View className="flex-1 gap-4 items-center justify-center px-10 ">
       <Text className="mb-10">LOGIN</Text>
-      <TextInput
-        onChangeText={(e) => setEmail(e)}
-        placeholder="Email"
-        className="py-3 px-2 w-full text-black  bg-violet-400 rounded-sm"
-      />
-      <TextInput
-        onChangeText={(e) => setPassword(e)}
-        placeholder="Password"
-        className="py-3 px-2 w-full text-black bg-violet-400 rounded-sm"
+
+      <Controller
+        control={control}
+        render={({ field }) => (
+          <TextInput
+            {...field}
+            onChangeText={(text) => field.onChange(text)}
+            className="py-3 px-2 w-full text-black  bg-violet-400 rounded-sm"
+          />
+        )}
+        name="email"
       />
 
-      <TouchableOpacity onPress={handleLogin} className="bg-violet-500 w-full p-3">
+      <Controller
+        control={control}
+        render={({ field }) => (
+          <TextInput
+            {...field}
+            onChangeText={(text) => field.onChange(text)}
+            className="py-3 px-2 w-full text-black  bg-violet-400 rounded-sm"
+          />
+        )}
+        name="password"
+      />
+
+      <TouchableOpacity className="bg-violet-500 w-full p-3" onPress={handleSubmit(onSubmit)}>
         <Text className="text-center font-bold uppercase text-violet-50">Login</Text>
       </TouchableOpacity>
 
