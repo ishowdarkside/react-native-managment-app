@@ -5,6 +5,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 
 const PrivateLayout = () => {
   useAuth();
+
   return (
     <ProtectPrivateLayout>
       <Tabs screenOptions={{ headerShown: false }}>
